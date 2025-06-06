@@ -55,6 +55,12 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
     kapt ("com.github.bumptech.glide:compiler:4.15.1")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.fragment:fragment-ktx:1.5.7")
+
+
+
 
 
 }
