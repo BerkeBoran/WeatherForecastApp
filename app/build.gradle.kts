@@ -58,6 +58,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("androidx.fragment:fragment-ktx:1.5.7")
+    implementation ("com.airbnb.android:lottie:6.4.0")
+
 
 
 

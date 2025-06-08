@@ -27,6 +27,7 @@ class WeatherViewModel: ViewModel() {
                        tempMax = data.main.temp_max,
                         tempMin = data.main.temp_min,
                         description =data.weather[0].description,
+                        icon = data.weather[0].icon,
 
                     )
 

@@ -15,6 +15,7 @@ import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.weatherforecastapp.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -63,13 +64,14 @@ class HomeFragment : Fragment() {
 
         binding.recyclerHourly.adapter = hourlyAdapter
         binding.recyclerDaily.adapter = dailyAdapter
-
         viewModel.currentWeather.observe(viewLifecycleOwner) { weatherInfo ->
             binding.tvCity.text = weatherInfo.cityName
             binding.tvTemp.text = "${weatherInfo.temp}°C"
             binding.tvDescription.text = weatherInfo.description
-        }
 
+            updateWeatherIcon(weatherInfo.icon)
+            updateBackground(weatherInfo.icon)
+        }
         viewModel.hourlyForecast.observe(viewLifecycleOwner) { hourlyList ->
             hourlyAdapter = HourlyAdapter(hourlyList)
             binding.recyclerHourly.adapter = hourlyAdapter
@@ -111,6 +113,29 @@ class HomeFragment : Fragment() {
             }
         }
     }
+    private fun updateBackground(iconCode: String) {
+        val backgroundRes = when {
+            iconCode == "01d" -> R.drawable.bg_sunny
+            iconCode == "01n" -> R.drawable.bg_clear_night
+            iconCode.startsWith("50") -> R.drawable.bg_foggy
+            iconCode.startsWith("09") || iconCode.startsWith("10") -> R.drawable.bg_rainy
+            iconCode.startsWith("11") -> R.drawable.bg_storm
+            iconCode.startsWith("13") -> R.drawable.bg_snow
+            iconCode.startsWith("02") || iconCode.startsWith("03") || iconCode.startsWith("04") -> R.drawable.bg_cloudy
+            else -> R.drawable.bg_default
+        }
+
+        binding.root.setBackgroundResource(backgroundRes)
+    }
+    private fun updateWeatherIcon(iconCode: String) {
+        val iconUrl = "https://openweathermap.org/img/wn/${iconCode}@4x.png"
+
+        Glide.with(this)
+            .load(iconUrl)
+            .override(200, 200)
+            .into(binding.weatherIcon)
+    }
+
 
 
 }

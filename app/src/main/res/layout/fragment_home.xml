@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -8,7 +14,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        >
+
 
         <!-- Anlık Hava Durumu -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,5 +102,21 @@
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
             android:layout_marginTop="8dp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/weatherAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            />
     </LinearLayout>
 </ScrollView>
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Hava durumu ikonu"/>
+</FrameLayout>
